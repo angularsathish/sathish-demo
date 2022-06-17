@@ -1,0 +1,127 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+
+.bg-home {
+    height: 100vh;
+    background-size: cover;
+    align-self: center;
+    position: relative;
+    background-position: center center;
+  }
+  
+  .bg-home-75vh {
+    height: 75vh !important;
+    background-size: cover;
+    align-self: center;
+    position: relative;
+    background-position: center center;
+  }
+  
+  @media (max-width: 767px) {
+    .bg-home-75vh {
+      height: 80vh !important;
+    }
+  }
+  
+
+  .login-page {
+    font-size: 15px;
+  }
+  
+  .login-page .forgot-pass {
+    z-index: 99;
+    position: relative;
+    font-size: 13px;
+  }
+  
+  .cover-user .container-fluid {
+    max-width: 100%;
+  }
+  
+  @media (max-width: 768px) {
+    .cover-user .container-fluid .padding-less {
+      position: relative !important;
+      height: 400px !important;
+    }
+  }
+  
+  .cover-user .container-fluid .padding-less.img {
+    background: scroll center no-repeat;
+    background-size: cover;
+    position: absolute;
+    height: 100%;
+  }
+  
+  .cover-user .cover-user-img {
+    height: 100vh;
+  }
+  
+  @media (min-width: 1025px) {
+    .cover-user .cover-user-img {
+      padding: 0px 20%;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .cover-user .cover-user-img {
+      align-items: start !important;
+      height: auto !important;
+      padding: 30px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .cover-user .cover-user-content {
+      text-align: left !important;
+    }
+    .cover-user .cover-my-30 {
+      margin: 30px 0;
+    }
+  }
+  
+  .bg-profile {
+    padding: 100px 0;
+    background-size: cover;
+    align-self: center;
+    position: relative;
+    background-position: center center;
+  }
+  
+  
+.form-label,
+.form-check-label {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.form-control {
+  border: 1px solid #dee2e6;
+  font-size: 14px;
+  line-height: 26px;
+  background-color: #ffffff;
+  border-radius: 6px;
+}
+
+.form-control:focus {
+  border-color: #2f55d4;
+  box-shadow: none;
+}
+
+.form-control[readonly] {
+  background-color: #ffffff;
+}
+
+.form-control:disabled {
+  background-color: #dee2e6;
+}
+
+.form-check-input:focus {
+  border-color: #2f55d4;
+  box-shadow: none;
+}
+
+.form-check-input.form-check-input:checked {
+  background-color: #2f55d4;
+  border-color: #2f55d4;
+}

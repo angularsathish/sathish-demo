@@ -1,0 +1,30 @@
+{
+  "name": "sathish-devops",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "buildclient": "cd sathish-test && ng build",
+    "runclient": "cd sathish-test && npm start",
+    "devstart": "nodemon -e ts  --exec \"npm run myapp\"",
+    "myapp": "ts-node --inspect -- cd express-backend/server.js",
+    "watch": "nodemon -e ts -x npm run watch:serve",
+    "watch:serve": "ts-node  express-backend/server.js",
+    "dev": "npm run buildclient & concurrently --kill-others \"npm run runclient\" \"npm run watch\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "master"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^7.0.0",
+    "nodemon": "^2.0.15"
+  },
+  "devDependencies": {
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.4"
+  }
+}

@@ -1,0 +1,106 @@
+<section class="bg-auth-home d-table w-100">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-7 col-md-6">
+                <div class="me-lg-5">
+                    <img src="assets/image/user/signup.svg" class="img-fluid d-block mx-auto" alt="">
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-6">
+                <div class="card shadow rounded border-0">
+                    <div class="card-body">
+                        <h4 class="card-title text-center">Signup</h4>
+
+                        <form class="login-form mt-4" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">First name <span class="text-danger">*</span></label>
+                                        <div class="form-icon position-relative">
+                                            <i data-feather="user" class="fea icon-sm icons"></i>
+                                            <input type="text" class="form-control ps-5" placeholder="First Name"
+                                                formControlName="firstName">
+                                        </div>
+                                        <div *ngIf="submitted && myForm.firstName.errors?.required">
+                                            First Name is required.
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!--end col-->
+
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Last name <span class="text-danger">*</span></label>
+                                        <div class="form-icon position-relative">
+                                            <i data-feather="user-check" class="fea icon-sm icons"></i>
+                                            <input type="text" class="form-control ps-5" placeholder="Last Name"
+                                                formControlName="lastName">
+                                        </div>
+                                        <div *ngIf="submitted && myForm['lastName'].errors?.['required']">
+                                            Last Name is required.
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--end col-->
+
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label class="form-label">Your Username <span
+                                                class="text-danger">*</span></label>
+                                        <div class="form-icon position-relative">
+                                            <i data-feather="mail" class="fea icon-sm icons"></i>
+                                            <input type="text" class="form-control ps-5" placeholder="User Name"
+                                                formControlName="userName">
+                                        </div>
+
+                                        <div *ngIf="submitted && myForm['userName'].errors?.['required']">
+                                            User Name is required.
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--end col-->
+
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label class="form-label">Password <span class="text-danger">*</span></label>
+                                        <div class="form-icon position-relative">
+                                            <i data-feather="key" class="fea icon-sm icons"></i>
+                                            <input type="password" class="form-control ps-5" placeholder="Password"
+                                                formControlName="password">
+                                        </div>
+                                        <div *ngIf="submitted && myForm['password'].errors?.['required']">
+                                            Password is required.
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--end col-->
+
+
+
+                                <div class="col-md-12">
+                                    <div class="d-grid">
+                                        <button class="btn btn-primary" type="submit">Register</button>
+                                    </div>
+                                </div>
+                                <!--end col-->
+
+
+
+                                <div class="mx-auto">
+                                    <p class="mb-0 mt-3"><small class="text-dark me-2">Already have an account ?</small>
+                                        <a [routerLink]="['/auth/login']" class="text-dark fw-bold">Sign in</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <!--end row-->
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!--end col-->
+        </div>
+        <!--end row-->
+    </div>
+    <!--end container-->
+</section>

@@ -1,0 +1,89 @@
+<div class="container mt-5">
+
+    <div class="card">
+        <div class="card-header">
+            Create New Posts
+
+        </div>
+        <div class="card-body">
+            <form class=" mt-4" [formGroup]="postForm" (ngSubmit)="onSubmit()">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="mb-3">
+                            <label class="form-label">Title <span class="text-danger">*</span></label>
+                            <div class="form-icon position-relative">
+                                <input type="text" class="form-control ps-5" placeholder="Post Title"
+                                    formControlName="title">
+                            </div>
+                            <div *ngIf="submitted && myForm.title.errors?.required">
+                                Title is required.
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--end col-->
+
+                    <div class="col-md-12">
+                        <div class="mb-3">
+                            <label class="form-label">Image Url</label>
+                            <div class="form-icon position-relative">
+
+                                <input type="text" class="form-control ps-5" placeholder="Post Url"
+                                    formControlName="url">
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--end col-->
+
+                    <div class="col-md-12">
+                        <div class="mb-3">
+                            <label class="form-label">Content <span class="text-danger">*</span></label>
+                            <div class="form-icon position-relative">
+                                <input type="text" class="form-control ps-5" placeholder="content"
+                                    formControlName="content">
+                            </div>
+                            <div *ngIf="submitted && myForm.content.errors?.required">
+                                Content is required.
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--end col-->
+
+
+
+                    <div class="col-md-12">
+                        <div class="mb-3">
+                            <label class="form-label">Description</label>
+                            <div class="form-icon position-relative">
+                                <textarea class="form-control" formControlName="description" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end col-->
+
+
+
+
+                    <div class="col-md-12">
+                        <div class="d-grid">
+                            <button class="btn btn-primary" type="submit">Register</button>
+                        </div>
+                    </div>
+                    <!--end col-->
+
+
+
+
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+
+
+
+</div>
