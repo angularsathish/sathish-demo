@@ -2,6 +2,7 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ToastsService } from 'src/app/services/toasts.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
     public fb: FormBuilder,
     private router: Router,
     private ngZone: NgZone,
-    private apiService: AuthService
+    private apiService: AuthService,
+    private toastServ: ToastsService
   ) {
     this.mainForm();
   }
@@ -31,6 +33,13 @@ export class LoginComponent implements OnInit {
 
   get myForm() {
     return this.loginForm.controls;
+  }
+
+  showToast() {
+    this.toastServ.showWarningToast(
+      'Success toast title',
+      'This is a success toast message.'
+    );
   }
 
   onSubmit() {
@@ -49,6 +58,7 @@ export class LoginComponent implements OnInit {
         },
         error: (e) => {
           console.log(e);
+          this.toastServ.showWarningToast('Invalid API Data', e());
         },
       });
     }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import {
   HttpClient,
@@ -30,14 +30,17 @@ export class AuthService {
   // Error handling
   errorMgmt(error: HttpErrorResponse) {
     let errorMessage = '';
+    let errmsg = '';
     if (error.error instanceof ErrorEvent) {
       // Get client-side error
       errorMessage = error.error.message;
+      errmsg = error.error.message;
     } else {
       // Get server-side error
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+      errorMessage = error.error;
+      errmsg = error.error;
     }
-    console.log(errorMessage);
+
     return throwError(() => {
       return errorMessage;
     });

@@ -4,3 +4,5 @@
 /express-backend/node_modules
 /express-backend/package-lock.json
 /.history
+/express-backend/uploads
+/express-backend/.history

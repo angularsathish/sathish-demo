@@ -6,11 +6,11 @@ let Comments = new Schema({
         type: String, required : true,
      },
      postId: {
-      type: String, required : true,
+      type: mongoose.Types.ObjectId, required : true,
    },
   
  userId: {
-      type: String, required : true,
+   type: mongoose.Types.ObjectId, required : true,
    },
 
 }, {

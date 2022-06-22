@@ -15,6 +15,10 @@ export class HomeComponent implements OnInit {
   commentForm!: FormGroup;
   isValid: boolean = false;
 
+  page: number = 1;
+  itemsPerPage: number = 5;
+  totalItems: any;
+
   constructor(
     private apiServ: PostService,
     private router: Router,
@@ -35,8 +39,25 @@ export class HomeComponent implements OnInit {
   }
 
   readPost() {
-    this.apiServ.getPosts().subscribe((data) => {
-      this.Posts = data;
+    const tableParam = {
+      page: 1,
+      size: this.itemsPerPage,
+    };
+    this.apiServ.getPosts(tableParam).subscribe((data) => {
+      console.log('data', data);
+      this.Posts = data.posts;
+      this.totalItems = data.totalPages;
+    });
+  }
+
+  gty(page: any) {
+    const tableParam = {
+      page: page,
+      size: this.itemsPerPage,
+    };
+    this.apiServ.getPosts(tableParam).subscribe((data) => {
+      this.Posts = data.posts;
+      this.totalItems = data.totalPages;
     });
   }
 

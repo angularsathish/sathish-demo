@@ -18,23 +18,33 @@ export class PostService {
 
   // Create
   createPost(data): Observable<any> {
+    console.log('data', data);
     const headers = new HttpHeaders().set(
       'auth',
       sessionStorage.getItem('token')
     );
+    headers.append('Content-Type', 'multipart/form-data');
+    const formData: FormData = new FormData();
+    for (let i = 0; i < data.image.length; i++) {
+      formData.append('Images', data.image[i]);
+    }
+
+    formData.append('post', JSON.stringify(data));
     let url = `${this.baseUri}/post/create`;
     return this.http
-      .post(url, data, { headers: headers })
+      .post(url, formData, { headers: headers })
       .pipe(catchError(this.errorMgmt));
   }
 
   // Get All
-  getPosts(): Observable<any> {
+  getPosts(param): Observable<any> {
     const headers = new HttpHeaders().set(
       'auth',
       sessionStorage.getItem('token')
     );
-    let url = `${this.baseUri}/post/list`;
+
+    let url =
+      `${this.baseUri}/post/list` + `?page=${param.page}&size=${param.size}`;
     return this.http.get(url, { headers: headers });
   }
 

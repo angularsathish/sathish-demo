@@ -1,7 +1,19 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  NgZone,
+  ViewChild,
+  ElementRef,
+} from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  FormControl,
+} from '@angular/forms';
 import { PostService } from 'src/app/services/post.service';
+import { FileUploadValidators } from '@iplab/ngx-file-upload';
 
 @Component({
   selector: 'app-posts',
@@ -11,6 +23,10 @@ import { PostService } from 'src/app/services/post.service';
 export class PostsComponent implements OnInit {
   submitted = false;
   postForm!: FormGroup;
+  private filesControl = new FormControl(null, [
+    FileUploadValidators.filesLimit(1),
+    Validators.required,
+  ]);
 
   constructor(
     public fb: FormBuilder,
@@ -36,12 +52,16 @@ export class PostsComponent implements OnInit {
       content: ['', Validators.required],
       description: [''],
       _id: [null],
-      url: [''],
+      image: this.filesControl,
     });
   }
 
   get myForm() {
     return this.postForm.controls;
+  }
+
+  get file() {
+    return this.postForm.get('image');
   }
 
   onSubmit() {

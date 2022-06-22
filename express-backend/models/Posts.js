@@ -15,7 +15,8 @@ let Post = new Schema({
     type: String,
  },
  userId: {
-      type: String, required : true,
+   type: mongoose.Types.ObjectId,
+    required : true,
    },
 
 }, {

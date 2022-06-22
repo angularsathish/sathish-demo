@@ -1,7 +1,8 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../../../services/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ToastsService } from 'src/app/services/toasts.service';
 
 @Component({
   selector: 'app-register',
@@ -16,7 +17,8 @@ export class RegisterComponent implements OnInit {
     public fb: FormBuilder,
     private router: Router,
     private ngZone: NgZone,
-    private apiService: AuthService
+    private apiService: AuthService,
+    private toastServ: ToastsService
   ) {
     this.mainForm();
   }
@@ -43,15 +45,22 @@ export class RegisterComponent implements OnInit {
       this.registerForm.markAllAsTouched();
       return;
     } else {
-      return this.apiService.createUser(this.registerForm.value).subscribe({
-        complete: () => {
-          console.log('User successfully created!'),
-            this.ngZone.run(() => this.router.navigateByUrl('/auth/login'));
-        },
-        error: (e) => {
-          console.log(e);
-        },
-      });
+      try {
+        // synchronous operation
+        return this.apiService.createUser(this.registerForm.value).subscribe({
+          next: (beers) => {
+            console.log(beers);
+          },
+          error: (e) => {
+            this.toastServ.showWarningToast('Invalid API Data', e());
+          },
+          complete: () =>
+            this.ngZone.run(() => this.router.navigateByUrl('/auth/login')),
+        });
+      } catch (error) {
+        console.log('try catch error', error);
+        // handle error, only executed in case of error
+      }
     }
   }
 }

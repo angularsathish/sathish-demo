@@ -8,7 +8,12 @@ let User = require('../models/Users');
 userRoute.route('/create').post((req, res, next) => {
     User.create(req.body, (error, data) => {
     if (error) {
-      return next(error)
+      console.log('what value', error)
+      if (error.name === 'MongoServerError' && error.code === 11000) {
+        next(new Error('username must be unique'));
+      } else {
+        next(error);
+      }
     } else {
       res.json(data)
     }

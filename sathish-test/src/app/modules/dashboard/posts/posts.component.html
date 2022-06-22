@@ -2,8 +2,12 @@
 
     <div class="card">
         <div class="card-header">
-            Create New Posts
 
+
+            <div class="col-md-12 mb-5 text-center">
+                Create New Posts
+                <button type="button" class="btn btn-info float-end" [routerLink]="['/dashboard']">Dashboard</button>
+            </div>
         </div>
         <div class="card-body">
             <form class=" mt-4" [formGroup]="postForm" (ngSubmit)="onSubmit()">
@@ -27,13 +31,15 @@
                     <div class="col-md-12">
                         <div class="mb-3">
                             <label class="form-label">Image Url</label>
-                            <div class="form-icon position-relative">
 
-                                <input type="text" class="form-control ps-5" placeholder="Post Url"
-                                    formControlName="url">
-                            </div>
-
+                            <file-upload formControlName="image"></file-upload>
+                            <small [ngClass]="{'is-invalid': !file.valid && submitted}" style="color: red;"
+                                *ngIf="!file.valid && (file.dirty || file.touched || submitted)"
+                                class="error jquery-validation-error small form-text">Atleast 1 file
+                                be required</small>
                         </div>
+
+
                     </div>
                     <!--end col-->
 
